@@ -31,6 +31,9 @@ const paths = require('../config/paths');
 const config = require('../config/webpack.config.dev');
 const createDevServerConfig = require('../config/webpackDevServer.config');
 
+// mock
+const { applyMock } = require('../config/mock/mock');
+
 const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;
 
@@ -65,6 +68,10 @@ choosePort(HOST, DEFAULT_PORT)
       urls.lanUrlForConfig
     );
     const devServer = new WebpackDevServer(compiler, serverConfig);
+
+    // run mock
+    applyMock(devServer);
+
     // Launch WebpackDevServer.
     devServer.listen(port, HOST, err => {
       if (err) {
@@ -83,6 +90,7 @@ choosePort(HOST, DEFAULT_PORT)
         process.exit();
       });
     });
+
   })
   .catch(err => {
     if (err && err.message) {
