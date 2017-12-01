@@ -1,16 +1,9 @@
-import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React from 'react'
 
-import PrimaryLayout from './comm/PrimaryLayout';
-
-class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <PrimaryLayout />
-      </BrowserRouter>
-    );
-  }
+const App = () => {
+  return (
+    <h1>Hello React 3</h1>
+  )
 }
 
-export default App;
+export default App
